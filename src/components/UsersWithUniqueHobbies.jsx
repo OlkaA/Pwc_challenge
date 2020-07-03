@@ -15,12 +15,12 @@ import {
       user.hobbies.forEach((hobbie) => {
         const hobbieLowerCase = hobbie.toLowerCase();
         if (hobbiesObject[hobbieLowerCase]) {
-          result.splice(result.indexOf(user), 1);
+          const index = result.findIndex(x => x.name === hobbiesObject[hobbieLowerCase]);
+          result.splice(index, 1);
           hobbiesObject[hobbieLowerCase] = null;
           include = false;
         } else if (hobbiesObject[hobbieLowerCase] === null) {
           include = false;
-          return;
         } else {
           hobbiesObject[hobbieLowerCase] = user.name;
         }
@@ -29,7 +29,7 @@ import {
         result.push(user);
       }
     });
-  
+    
     return result;
   };
   
